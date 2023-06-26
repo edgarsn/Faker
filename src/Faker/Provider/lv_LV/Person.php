@@ -163,7 +163,9 @@ class Person extends \Faker\Provider\Person
         $total = 0;
 
         foreach ($partialNumberSplit as $key => $digit) {
-            $total += $idDigitValidator[$key] * (int) $digit;
+            if (isset($idDigitValidator[$key])) {
+                $total += $idDigitValidator[$key] * (int) $digit;
+            }
         }
 
         $checksumDigit = (1101 - $total) % 11 % 10;
